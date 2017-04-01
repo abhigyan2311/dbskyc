@@ -30,6 +30,8 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet var dobPick: UIDatePicker!
     @IBOutlet var familyLinkPick: UIPickerView!
     
+    var userGender: String!
+    
     var imagePicker: UIImagePickerController!
     var photoURL: URL!
     let transferManager = AWSS3TransferManager.default()
@@ -188,17 +190,17 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         
         let myKyc = kycInfo()
         myKyc?.KycId = "9433-qsjd23-343"
-        myKyc?.firstName = "Abhigyan"
-        myKyc?.lastName = "Singh"
-        myKyc?.gender = "M"
-        myKyc?.dOB = "2017-11-23"
+        myKyc?.firstName = self.firstName.text
+        myKyc?.lastName = self.lastName.text
+        myKyc?.gender = self.userGender
+        myKyc?.dOB = self.dOB.text
         myKyc?.photoDownloadLink = "Abhigyan_Singh_\(currentDate)"
-        myKyc?.address = "VIT"
-        myKyc?.city = "Vellore"
-        myKyc?.state = "Tamil Nadu"
-        myKyc?.country = "India"
-        myKyc?.familyLink = "father"
-        myKyc?.familyLinkName = "Ajai Singh"
+        myKyc?.address = self.address.text
+        myKyc?.city = self.city.text
+        myKyc?.state = self.state.text
+        myKyc?.country = self.country.text
+        myKyc?.familyLink = self.familyLink.text
+        myKyc?.familyLinkName = self.familyLinkName.text
         
         dynamoDBObjectMapper.save(myKyc!).continueWith(block: { (task:AWSTask<AnyObject>!) -> Any? in
             if let error = task.error as? NSError {
@@ -209,17 +211,36 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             return nil
         })
     }
+    
+    
+    @IBAction func save(sender:UIButton){
+    
+    }
 
-    @IBAction func pickerChange(sender:UIDatePicker){
+    
+    @IBAction func genderSelect(_ sender: AnyObject) {
+        if self.gender.selectedSegmentIndex == 0{
+            self.userGender = "male"
+        }
+        else{
+            self.userGender = "female"
+        }
+    }
+
+    
+    @IBAction func pickerChange(){
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.medium
-        dOB.text = dateFormatter.string(from: sender.date)
+        dOB.text = dateFormatter.string(from: dobPick.date)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         tap = UITapGestureRecognizer(target: self, action:#selector(self.tapped))
         self.view.addGestureRecognizer(tap)
         if textField == self.dOB{
+            dobPick = UIDatePicker()
+            dobPick.addTarget(self, action: (Selector(("pickerChange:"))), for: .valueChanged)
+            textField.inputView = self.dobPick
             self.dobPick.isHidden = false
         }else if textField == self.familyLink{
             self.familyLinkPick.isHidden = false
@@ -268,7 +289,6 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dummyImage()
-//        self.dOB.inputView = dobPick
         
         familyLinkPick.delegate = self
         familyLinkPick.dataSource = self

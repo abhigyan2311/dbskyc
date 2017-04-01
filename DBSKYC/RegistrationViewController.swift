@@ -66,26 +66,36 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         imagePicker.dismiss(animated: true, completion: nil)
         camView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         //this block of code grabs the path of the file
-        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
-        let imagePath =  imageURL.path!
-        let localPath = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(imagePath)
-        
-        //this block of code adds data to the above path
-        let path = localPath?.relativePath
-        let imageName = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let data = UIImagePNGRepresentation(imageName)
-        let fileUrl = NSURL(string: imagePath)
-        do {
-            try data?.write(to: fileUrl as! URL, options: .noFileProtection)
-            print("Written to disk")
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
+        let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory,nsUserDomainMask, true)
+        if let dirPath = paths.first
+        {
+            let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent("Image2.png")
+            let image    = UIImage(contentsOfFile: imageURL.path)
+            print(imageURL.description)
+            // Do whatever you want with the image
         }
-        catch let error as NSError {
-            print(error.description)
-        }
-        
-        //this block grabs the NSURL so you can use it in CKASSET
-        photoURL = NSURL(fileURLWithPath: path!) as URL
-        print(photoURL)
+//        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+//        let imagePath =  imageURL.path!
+//        let localPath = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(imagePath)
+//        
+//        //this block of code adds data to the above path
+//        let path = localPath?.relativePath
+//        let imageName = info[UIImagePickerControllerOriginalImage] as! UIImage
+//        let data = UIImagePNGRepresentation(imageName)
+//        let fileUrl = NSURL(string: imagePath)
+//        do {
+//            try data?.write(to: fileUrl as! URL, options: .noFileProtection)
+//            print("Written to disk")
+//        }
+//        catch let error as NSError {
+//            print(error.description)
+//        }
+//        
+//        //this block grabs the NSURL so you can use it in CKASSET
+//        photoURL = NSURL(fileURLWithPath: path!) as URL
+//        print(photoURL)
     }
     
     @IBAction func uploadS3(_ sender: Any) {

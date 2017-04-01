@@ -63,19 +63,28 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         imagePicker.dismiss(animated: true, completion: nil)
-//        camView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-
+        
+        let camImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
         let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
         let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
         let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory,nsUserDomainMask, true)
-        if let dirPath = paths.first
-        {
+        
+
+        if let dirPath = paths.first{
+            let writePath = URL(fileURLWithPath: dirPath).appendingPathComponent("Image2.png")
+            do {
+                    try UIImagePNGRepresentation(camImage!)!.write(to: writePath)
+                    print("Image Added Successfully")
+                } catch {
+                    print(error)
+                }
+            
             photoURL = URL(fileURLWithPath: dirPath).appendingPathComponent("Image2.png")
             let image    = UIImage(contentsOfFile: photoURL.path)
             camView.image = image
-            
-            // Do whatever you want with the image
         }
+            // Do whatever you want with the image
     }
     
     @IBAction func uploadS3(_ sender: Any) {

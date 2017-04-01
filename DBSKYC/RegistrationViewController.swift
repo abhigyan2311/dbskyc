@@ -194,6 +194,9 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         })
     }
 
+    func pickerChange(){
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

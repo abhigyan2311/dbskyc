@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>AWSCore.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AWSDynamoDB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AWSRekognition.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AWSS3.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-DBSKYC.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>5ACFCBB5C36270A9DF9A2D2D11708867</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>764BF5F8A7793010994AF3D12E8FB7BF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8C9A2B99EFF5B52E41C07A9A3DB4FA0F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F7098779713B711F6C591B62A41F242</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CFEBFC26CDEFDC323E058AB2D2A1B462</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

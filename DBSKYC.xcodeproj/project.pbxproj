@@ -1,0 +1,389 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00649E791E8F9C8F00064325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00649E781E8F9C8F00064325 /* AppDelegate.swift */; };
+		00649E7B1E8F9C8F00064325 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00649E7A1E8F9C8F00064325 /* RegistrationViewController.swift */; };
+		00649E7E1E8F9C8F00064325 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00649E7C1E8F9C8F00064325 /* Main.storyboard */; };
+		00649E801E8F9C8F00064325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00649E7F1E8F9C8F00064325 /* Assets.xcassets */; };
+		00649E831E8F9C8F00064325 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00649E811E8F9C8F00064325 /* LaunchScreen.storyboard */; };
+		00649E8B1E8FB41500064325 /* const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00649E8A1E8FB41500064325 /* const.swift */; };
+		B1D1009A1AA7E828C998402F /* Pods_DBSKYC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79AD8CDB383BD47BDE461314 /* Pods_DBSKYC.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		00649E751E8F9C8F00064325 /* DBSKYC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DBSKYC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00649E781E8F9C8F00064325 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		00649E7A1E8F9C8F00064325 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		00649E7D1E8F9C8F00064325 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		00649E7F1E8F9C8F00064325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00649E821E8F9C8F00064325 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		00649E841E8F9C8F00064325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00649E8A1E8FB41500064325 /* const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = const.swift; sourceTree = "<group>"; };
+		342B9188C64B219D9E6E8074 /* Pods-DBSKYC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DBSKYC.release.xcconfig"; path = "Pods/Target Support Files/Pods-DBSKYC/Pods-DBSKYC.release.xcconfig"; sourceTree = "<group>"; };
+		79AD8CDB383BD47BDE461314 /* Pods_DBSKYC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DBSKYC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEF7F89A9B38AD0E9981B43A /* Pods-DBSKYC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DBSKYC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DBSKYC/Pods-DBSKYC.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00649E721E8F9C8E00064325 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1D1009A1AA7E828C998402F /* Pods_DBSKYC.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00649E6C1E8F9C8E00064325 = {
+			isa = PBXGroup;
+			children = (
+				00649E771E8F9C8F00064325 /* DBSKYC */,
+				00649E761E8F9C8F00064325 /* Products */,
+				DFCD48DBF9DFA62B066C892B /* Pods */,
+				5FA1F2208F0B025A77DF6577 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		00649E761E8F9C8F00064325 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00649E751E8F9C8F00064325 /* DBSKYC.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00649E771E8F9C8F00064325 /* DBSKYC */ = {
+			isa = PBXGroup;
+			children = (
+				00649E781E8F9C8F00064325 /* AppDelegate.swift */,
+				00649E7A1E8F9C8F00064325 /* RegistrationViewController.swift */,
+				00649E7C1E8F9C8F00064325 /* Main.storyboard */,
+				00649E7F1E8F9C8F00064325 /* Assets.xcassets */,
+				00649E811E8F9C8F00064325 /* LaunchScreen.storyboard */,
+				00649E841E8F9C8F00064325 /* Info.plist */,
+				00649E8A1E8FB41500064325 /* const.swift */,
+			);
+			path = DBSKYC;
+			sourceTree = "<group>";
+		};
+		5FA1F2208F0B025A77DF6577 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				79AD8CDB383BD47BDE461314 /* Pods_DBSKYC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DFCD48DBF9DFA62B066C892B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FEF7F89A9B38AD0E9981B43A /* Pods-DBSKYC.debug.xcconfig */,
+				342B9188C64B219D9E6E8074 /* Pods-DBSKYC.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00649E741E8F9C8E00064325 /* DBSKYC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00649E871E8F9C8F00064325 /* Build configuration list for PBXNativeTarget "DBSKYC" */;
+			buildPhases = (
+				1C8CDBF0A539CEEBE45EFAB9 /* [CP] Check Pods Manifest.lock */,
+				00649E711E8F9C8E00064325 /* Sources */,
+				00649E721E8F9C8E00064325 /* Frameworks */,
+				00649E731E8F9C8E00064325 /* Resources */,
+				214D6A9B51475946A88CA95D /* [CP] Embed Pods Frameworks */,
+				6193B7384851564D53B66608 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DBSKYC;
+			productName = DBSKYC;
+			productReference = 00649E751E8F9C8F00064325 /* DBSKYC.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00649E6D1E8F9C8E00064325 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Abhigyan Singh";
+				TargetAttributes = {
+					00649E741E8F9C8E00064325 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 8534MXKXS9;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 00649E701E8F9C8E00064325 /* Build configuration list for PBXProject "DBSKYC" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 00649E6C1E8F9C8E00064325;
+			productRefGroup = 00649E761E8F9C8F00064325 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00649E741E8F9C8E00064325 /* DBSKYC */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00649E731E8F9C8E00064325 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00649E831E8F9C8F00064325 /* LaunchScreen.storyboard in Resources */,
+				00649E801E8F9C8F00064325 /* Assets.xcassets in Resources */,
+				00649E7E1E8F9C8F00064325 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1C8CDBF0A539CEEBE45EFAB9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		214D6A9B51475946A88CA95D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DBSKYC/Pods-DBSKYC-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6193B7384851564D53B66608 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DBSKYC/Pods-DBSKYC-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00649E711E8F9C8E00064325 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00649E8B1E8FB41500064325 /* const.swift in Sources */,
+				00649E7B1E8F9C8F00064325 /* RegistrationViewController.swift in Sources */,
+				00649E791E8F9C8F00064325 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		00649E7C1E8F9C8F00064325 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00649E7D1E8F9C8F00064325 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		00649E811E8F9C8F00064325 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00649E821E8F9C8F00064325 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00649E851E8F9C8F00064325 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		00649E861E8F9C8F00064325 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		00649E881E8F9C8F00064325 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEF7F89A9B38AD0E9981B43A /* Pods-DBSKYC.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8534MXKXS9;
+				INFOPLIST_FILE = DBSKYC/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.abhigyan.DBSKYC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		00649E891E8F9C8F00064325 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 342B9188C64B219D9E6E8074 /* Pods-DBSKYC.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8534MXKXS9;
+				INFOPLIST_FILE = DBSKYC/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.abhigyan.DBSKYC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00649E701E8F9C8E00064325 /* Build configuration list for PBXProject "DBSKYC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00649E851E8F9C8F00064325 /* Debug */,
+				00649E861E8F9C8F00064325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00649E871E8F9C8F00064325 /* Build configuration list for PBXNativeTarget "DBSKYC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00649E881E8F9C8F00064325 /* Debug */,
+				00649E891E8F9C8F00064325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00649E6D1E8F9C8E00064325 /* Project object */;
+}

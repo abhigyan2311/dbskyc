@@ -12,7 +12,7 @@ import AVFoundation
 import AWSDynamoDB
 import AWSRekognition
 
-class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     let pickerData = ["Father","Mother"]
     
@@ -268,7 +268,11 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dummyImage()
-        self.dOB.inputView = dobPick
+//        self.dOB.inputView = dobPick
+        
+        familyLinkPick.delegate = self
+        familyLinkPick.dataSource = self
+        
         rekognitionClient = AWSRekognition.default()
         
         // Do any additional setup after loading the view, typically from a nib.

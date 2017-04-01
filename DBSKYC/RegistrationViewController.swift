@@ -14,6 +14,8 @@ import AWSRekognition
 
 class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
+    let pickerData = ["Father","Mother"]
+    
     var tap :UITapGestureRecognizer!
     @IBOutlet var firstName: UITextField!
     @IBOutlet var lastName: UITextField!
@@ -208,15 +210,19 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         })
     }
 
-    func pickerChange(){
-        
+    @IBAction func pickerChange(sender:UIDatePicker){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dOB.text = dateFormatter.string(from: sender.date)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         tap = UITapGestureRecognizer(target: self, action:#selector(self.tapped))
         self.view.addGestureRecognizer(tap)
         if textField == self.dOB{
-            
+            self.dobPick.isHidden = false
+        }else if textField == self.familyLink{
+            self.familyLinkPick.isHidden = false
         }
     }
     
@@ -230,7 +236,9 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         self.dOB.resignFirstResponder()
         self.familyLink.resignFirstResponder()
         self.familyLinkName.resignFirstResponder()
-        
+        self.dobPick.isHidden = true
+        self.familyLinkPick.isHidden = true
+    
         view.removeGestureRecognizer(tap)
     }
     
@@ -239,12 +247,28 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         textField.resignFirstResponder()
         return true
     }
-
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        familyLink.text = pickerData[row]
+        self.tapped()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dummyImage()
-        
+        self.dOB.inputView = dobPick
         rekognitionClient = AWSRekognition.default()
         
         // Do any additional setup after loading the view, typically from a nib.

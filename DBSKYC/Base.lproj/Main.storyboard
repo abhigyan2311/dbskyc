@@ -269,6 +269,9 @@
                                 <date key="date" timeIntervalSinceReferenceDate="512765982.56771702">
                                     <!--2017-04-01 18:59:42 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="pickerChangeWithSender:" destination="FiS-xa-6eb" eventType="valueChanged" id="tUC-j3-W4a"/>
+                                </connections>
                             </datePicker>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IMc-so-f8N">
                                 <rect key="frame" x="52" y="337" width="214" height="29"/>
@@ -294,6 +297,10 @@
                             </button>
                             <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVd-Qc-5cf">
                                 <rect key="frame" x="0.0" y="440" width="320" height="128"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="FiS-xa-6eb" id="u00-rg-DeK"/>
+                                    <outlet property="delegate" destination="FiS-xa-6eb" id="KEd-E1-ky1"/>
+                                </connections>
                             </pickerView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Family Link Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gdi-dG-kye">
                                 <rect key="frame" x="123" y="125" width="143" height="30"/>

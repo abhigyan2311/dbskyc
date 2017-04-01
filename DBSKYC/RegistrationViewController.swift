@@ -90,6 +90,30 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             // Do whatever you want with the image
     }
     
+    func dummyImage(){
+        
+        let camImage = UIImage(named: "face")
+        
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
+        let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory,nsUserDomainMask, true)
+        
+        
+        if let dirPath = paths.first{
+            let writePath = URL(fileURLWithPath: dirPath).appendingPathComponent("Image2.png")
+            do {
+                try UIImagePNGRepresentation(camImage!)!.write(to: writePath)
+                print("Image Added Successfully")
+            } catch {
+                print(error)
+            }
+            
+            photoURL = URL(fileURLWithPath: dirPath).appendingPathComponent("Image2.png")
+            let image    = UIImage(contentsOfFile: photoURL.path)
+            camView.image = image
+        }
+    }
+    
     @IBAction func uploadS3(_ sender: Any) {
         
         let uploadRequest = AWSS3TransferManagerUploadRequest()
@@ -140,6 +164,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.dummyImage()
         // Do any additional setup after loading the view, typically from a nib.
     }
 

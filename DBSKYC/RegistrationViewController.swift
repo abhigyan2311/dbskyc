@@ -8,6 +8,7 @@
 
 import UIKit
 import AWSS3
+import AVFoundation
 
 class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -16,14 +17,52 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     var photoURL: URL!
 
     @IBOutlet var camView: UIImageView!
-    @IBAction func takePic(_ sender: Any) {
-        imagePicker =  UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+    @IBAction func takePic(_ sender: UIButton) {
+        let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        switch status {
+        case .authorized:
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
+                imagePicker =  UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.allowsEditing = true
+                imagePicker.sourceType = .camera
+                present(imagePicker, animated: true, completion: nil)
+            }
+            break
+            
+        case .denied, .restricted :
+            let titleStr = "Camera Access Needed!"
+            let messageStr = "Please enable Camera access in app settings for uploading media."
+            let cancelStr = "Cancel"
+            let settingStr = "App Settings"
+            let alert = UIAlertController(
+                title: titleStr,
+                message: messageStr,
+                preferredStyle: UIAlertControllerStyle.alert
+            )
+            alert.addAction(UIAlertAction(title: cancelStr, style: .cancel, handler: { (alert) -> Void in
+            }))
+            alert.addAction(UIAlertAction(title: settingStr, style: .default, handler: { (alert) -> Void in
+                UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+            }))
+            self.present(alert, animated: true, completion: nil)
+            break
+            
+        //handle denied status
+        case .notDetermined:
+            // ask for permissions
+            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (granted :Bool) -> Void in
+                if granted == false{
+                }else{
+                    self.imagePicker.sourceType = .camera
+                    self.present(self.imagePicker, animated: true, completion: nil)
+                }
+            })
+        }
+        print(2221212)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         imagePicker.dismiss(animated: true, completion: nil)
         camView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         //this block of code grabs the path of the file

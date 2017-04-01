@@ -12,7 +12,20 @@ import AVFoundation
 import AWSDynamoDB
 import AWSRekognition
 
-class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+    
+    @IBOutlet var firstName: UITextField!
+    @IBOutlet var lastName: UITextField!
+    @IBOutlet var gender: UISegmentedControl!
+    @IBOutlet var dOB: UITextField!
+    @IBOutlet var address: UITextField!
+    @IBOutlet var city: UITextField!
+    @IBOutlet var state: UITextField!
+    @IBOutlet var country: UITextField!
+    @IBOutlet var familyLink: UITextField!
+    @IBOutlet var familyLinkName: UITextField!
+    @IBOutlet var dobPick: UIDatePicker!
+    @IBOutlet var familyLinkPick: UIPickerView!
     
     var imagePicker: UIImagePickerController!
     var photoURL: URL!

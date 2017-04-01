@@ -117,7 +117,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         })
     }
     
-    func awsRekognition(){
+    func awsIndexRekognition(){
         guard let request = AWSRekognitionIndexFacesRequest() else
         {
             puts("Unable to initialize AWSRekognitionindexFaceRequest.")
@@ -126,7 +126,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         request.collectionId = "DBSKYC"
         request.detectionAttributes = ["ALL", "DEFAULT"]
         //KESHAV
-        let sourceImage = UIImage(named: "image")
+        let sourceImage = camView.image
         let image = AWSRekognitionImage()
         image!.bytes = UIImageJPEGRepresentation(sourceImage!, 0.7)
         request.image = image

@@ -113,6 +113,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
             
             let uploadOutput = task.result
             print("Upload complete for: \(uploadRequest?.key)")
+            self.awsIndexRekognition()
             return nil
         })
     }
@@ -125,7 +126,6 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         }
         request.collectionId = "DBSKYC"
         request.detectionAttributes = ["ALL", "DEFAULT"]
-        //KESHAV
         let sourceImage = camView.image
         let image = AWSRekognitionImage()
         image!.bytes = UIImageJPEGRepresentation(sourceImage!, 0.7)

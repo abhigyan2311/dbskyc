@@ -15,9 +15,9 @@ import AWSRekognition
 class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var imagePicker: UIImagePickerController!
-    var completionHandler: AWSS3TransferUtilityUploadCompletionHandlerBlock?
     var photoURL: URL!
     let Rekognition = AWSRekognition(forKey: "dbskycRekognition")
+    let transferManager = AWSS3TransferManager.default()
 
     @IBOutlet var camView: UIImageView!
     @IBAction func takePic(_ sender: UIButton) {
@@ -91,39 +91,34 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     @IBAction func uploadS3(_ sender: Any) {
-        let expression = AWSS3TransferUtilityUploadExpression()
-        expression.progressBlock = {(task, progress) in DispatchQueue.main.async(execute: {
-            print(progress)
-            })
-        }
-        self.completionHandler = { (task, error) -> Void in
-            DispatchQueue.main.async(execute: {
-                print("Uploaded")
-                AWSRekognitionIndexFacesRequest = (collectionId: "DBSKYC", image: )
-                Rekognition.indexFaces(AWSRekognitionIndexFacesRequest)
-//                Rekognition.indexFaces(AWSRekognitionIndexFacesRequest, completionHandler: { (response, error) in
-//                    if error == nil {
-//                        print(response)
-//                    }
-//                })
-            })
-        }
-        let  transferUtility = AWSS3TransferUtility.default()
-        transferUtility.uploadFile(photoURL,
-                                   bucket: S3BucketName,
-                                   key: "iosImg",
-                                   contentType: "image/png",
-                                   expression: expression,
-                                   completionHandler: completionHandler).continueWith { (task) -> AnyObject! in
-                                    if let error = task.error {
-                                        print("Error: \(error.localizedDescription)")
-                                    }
-                                    
-                                    if let _ = task.result {
-                                        // Do something with uploadTask.
-                                    }
-                                    return nil;
-        }
+        
+        let uploadRequest = AWSS3TransferManagerUploadRequest()
+        uploadRequest?.bucket = "dbskyc"
+        uploadRequest?.key = "testImg.png"
+        uploadRequest?.body = photoURL
+        transferManager.upload(uploadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
+            if let error = task.error as? NSError {
+                if error.domain == AWSS3TransferManagerErrorDomain, let code = AWSS3TransferManagerErrorType(rawValue: error.code) {
+                    switch code {
+                    case .cancelled, .paused:
+                        break
+                    default:
+                        print("Error uploading: \(uploadRequest?.key) Error: \(error)")
+                    }
+                } else {
+                    print("Error uploading: \(uploadRequest?.key) Error: \(error)")
+                }
+                return nil
+            }
+            
+            let uploadOutput = task.result
+            print("Upload complete for: \(uploadRequest?.key)")
+            return nil
+        })
+    }
+    
+    func awsRekognition(){
+        Rekognition.indexFaces(AWSRekognitionIndexFacesRequest, completionHandler: <#T##((AWSRekognitionIndexFacesResponse?, Error?) -> Void)?##((AWSRekognitionIndexFacesResponse?, Error?) -> Void)?##(AWSRekognitionIndexFacesResponse?, Error?) -> Void#>)
     }
     
     override func viewDidLoad() {

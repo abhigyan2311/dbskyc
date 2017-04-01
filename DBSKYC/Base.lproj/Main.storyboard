@@ -283,6 +283,9 @@
                                     <segment title="Female"/>
                                 </segments>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="genderSelect:" destination="FiS-xa-6eb" eventType="valueChanged" id="M6i-Z8-Iya"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VAH-ME-2nn">
                                 <rect key="frame" x="52" y="386" width="214" height="30"/>
@@ -294,6 +297,9 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveWithSender:" destination="FiS-xa-6eb" eventType="touchUpInside" id="jhA-QR-R0t"/>
+                                </connections>
                             </button>
                             <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVd-Qc-5cf">
                                 <rect key="frame" x="0.0" y="440" width="320" height="128"/>

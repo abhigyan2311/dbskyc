@@ -14,6 +14,7 @@ import AWSRekognition
 
 class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
+    var tap :UITapGestureRecognizer!
     @IBOutlet var firstName: UITextField!
     @IBOutlet var lastName: UITextField!
     @IBOutlet var gender: UISegmentedControl!
@@ -210,6 +211,35 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     func pickerChange(){
         
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        tap = UITapGestureRecognizer(target: self, action:#selector(self.tapped))
+        self.view.addGestureRecognizer(tap)
+        if textField == self.dOB{
+            
+        }
+    }
+    
+    func tapped(){
+        self.firstName.resignFirstResponder()
+        self.lastName.resignFirstResponder()
+        self.address.resignFirstResponder()
+        self.city.resignFirstResponder()
+        self.state.resignFirstResponder()
+        self.country.resignFirstResponder()
+        self.dOB.resignFirstResponder()
+        self.familyLink.resignFirstResponder()
+        self.familyLinkName.resignFirstResponder()
+        
+        view.removeGestureRecognizer(tap)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.tapped()
+        textField.resignFirstResponder()
+        return true
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

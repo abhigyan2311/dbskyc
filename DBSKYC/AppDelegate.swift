@@ -8,6 +8,7 @@
 
 import UIKit
 import AWSCore
+import AWSRekognition
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let credentialsProvider = AWSCognitoCredentialsProvider(regionType:.USEast1,
                                                                 identityPoolId:"us-east-1:76c3c482-c8a0-45cf-af3a-ef7b2d45bc8a")
         let configuration = AWSServiceConfiguration(region: .USEast1 , credentialsProvider:credentialsProvider)
+        AWSRekognition.register(with: configuration!, forKey: "dbskycRekognition")
         AWSServiceManager.default().defaultServiceConfiguration = configuration
         return true
     }

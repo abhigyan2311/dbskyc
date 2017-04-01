@@ -9,12 +9,15 @@
 import UIKit
 import AWSS3
 import AVFoundation
+import AWSDynamoDB
+import AWSRekognition
 
 class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var imagePicker: UIImagePickerController!
     var completionHandler: AWSS3TransferUtilityUploadCompletionHandlerBlock?
     var photoURL: URL!
+    let Rekognition = AWSRekognition(forKey: "dbskycRekognition")
 
     @IBOutlet var camView: UIImageView!
     @IBAction func takePic(_ sender: UIButton) {
@@ -81,12 +84,19 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     @IBAction func uploadS3(_ sender: Any) {
         let expression = AWSS3TransferUtilityUploadExpression()
         expression.progressBlock = {(task, progress) in DispatchQueue.main.async(execute: {
-            // Do something e.g. Update a progress bar.
+            print(progress)
             })
         }
         self.completionHandler = { (task, error) -> Void in
             DispatchQueue.main.async(execute: {
                 print("Uploaded")
+                AWSRekognitionIndexFacesRequest = (collectionId: "DBSKYC", image: )
+                Rekognition.indexFaces(AWSRekognitionIndexFacesRequest)
+//                Rekognition.indexFaces(AWSRekognitionIndexFacesRequest, completionHandler: { (response, error) in
+//                    if error == nil {
+//                        print(response)
+//                    }
+//                })
             })
         }
         let  transferUtility = AWSS3TransferUtility.default()

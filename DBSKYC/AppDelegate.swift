@@ -17,8 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let credentialsProvider = AWSCognitoCredentialsProvider(regionType:.USEast1,
-                                                                identityPoolId:"us-east-1:76c3c482-c8a0-45cf-af3a-ef7b2d45bc8a")
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType:.USEast1, identityPoolId:"us-east-1:76c3c482-c8a0-45cf-af3a-ef7b2d45bc8a")
         let configuration = AWSServiceConfiguration(region: .USEast1 , credentialsProvider:credentialsProvider)
         AWSRekognition.register(with: configuration!, forKey: "dbskycRekognition")
         AWSServiceManager.default().defaultServiceConfiguration = configuration

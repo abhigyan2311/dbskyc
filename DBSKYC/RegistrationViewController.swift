@@ -115,11 +115,11 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     @IBAction func uploadS3(_ sender: Any) {
-        
         let uploadRequest = AWSS3TransferManagerUploadRequest()
-        uploadRequest?.bucket = "dbskyc"
-        uploadRequest?.key = "testImg.png"
-        uploadRequest?.body = photoURL
+        uploadRequest!.bucket = "dbskyc"
+        uploadRequest!.key = "testImg.png"
+        print(photoURL)
+        uploadRequest!.body = photoURL
         transferManager.upload(uploadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
             if let error = task.error as? NSError {
                 if error.domain == AWSS3TransferManagerErrorDomain, let code = AWSS3TransferManagerErrorType(rawValue: error.code) {
@@ -134,10 +134,9 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                 }
                 return nil
             }
-            
             let uploadOutput = task.result
             print("Upload complete for: \(uploadRequest?.key)")
-            self.awsIndexRekognition()
+            //self.awsIndexRekognition()
             return nil
         })
     }

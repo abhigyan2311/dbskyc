@@ -14,7 +14,7 @@ import AWSRekognition
 
 class RegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    let pickerData = ["Father","Mother"]
+    let pickerData = ["Father","Mother","Spouse"]
     
     var tap :UITapGestureRecognizer!
     @IBOutlet var firstName: UITextField!
@@ -29,8 +29,10 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet var familyLinkName: UITextField!
     @IBOutlet var dobPick: UIDatePicker!
     @IBOutlet var familyLinkPick: UIPickerView!
+    @IBOutlet var loader: UIActivityIndicatorView!
+    @IBOutlet var successLabel: UILabel!
     
-    var userGender: String!
+    var userGender = "M"
     
     var imagePicker: UIImagePickerController!
     var photoURL: URL!
@@ -38,6 +40,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     var rekognitionClient: AWSRekognition!
     let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
     var faceId: String!
+    var pLink: String!
 
     @IBOutlet var camView: UIImageView!
     @IBAction func takePic(_ sender: UIButton) {
@@ -86,14 +89,10 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         imagePicker.dismiss(animated: true, completion: nil)
-        
         let camImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-        
         let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
         let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
         let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory,nsUserDomainMask, true)
-        
-
         if let dirPath = paths.first{
             let writePath = URL(fileURLWithPath: dirPath).appendingPathComponent("Image2.png")
             do {
@@ -102,12 +101,10 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                 } catch {
                     print(error)
                 }
-            
             photoURL = URL(fileURLWithPath: dirPath).appendingPathComponent("Image2.png")
             let image    = UIImage(contentsOfFile: photoURL.path)
             camView.image = image
         }
-            // Do whatever you want with the image
     }
     
     func dummyImage(){
@@ -129,10 +126,12 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         }
     }
     
-    @IBAction func uploadS3(_ sender: Any) {
+    func uploadS3() {
+        let currentDate = Int(NSDate().timeIntervalSince1970 * 100000)
+        pLink = "\(self.firstName.text!)_\(self.lastName.text!)_\(currentDate).jpg"
         let uploadRequest = AWSS3TransferManagerUploadRequest()
         uploadRequest!.bucket = "dbskyc"
-        uploadRequest!.key = "testImg.png"
+        uploadRequest!.key = pLink
         print(photoURL)
         uploadRequest!.body = photoURL
         transferManager.upload(uploadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
@@ -177,6 +176,7 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
                 //Trained and got the face ID
                 print(response!.faceRecords?[0].face?.faceId)
                 self.faceId = (response!.faceRecords?[0].face?.faceId)!
+                self.savetoDB()
             }
             else {
                 print(error)
@@ -185,28 +185,26 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     func savetoDB(){
-
-        let currentDate = (NSDate().timeIntervalSince1970 * 1000)
-        
         let myKyc = kycInfo()
-        myKyc?.KycId = "9433-qsjd23-343"
+        myKyc?.KycId = self.faceId
         myKyc?.firstName = self.firstName.text
         myKyc?.lastName = self.lastName.text
         myKyc?.gender = self.userGender
         myKyc?.dOB = self.dOB.text
-        myKyc?.photoDownloadLink = "Abhigyan_Singh_\(currentDate)"
+        myKyc?.photoDownloadLink = pLink
         myKyc?.address = self.address.text
         myKyc?.city = self.city.text
         myKyc?.state = self.state.text
         myKyc?.country = self.country.text
         myKyc?.familyLink = self.familyLink.text
         myKyc?.familyLinkName = self.familyLinkName.text
-        
         dynamoDBObjectMapper.save(myKyc!).continueWith(block: { (task:AWSTask<AnyObject>!) -> Any? in
             if let error = task.error as? NSError {
                 print("The request failed. Error: \(error)")
             } else {
-                print(task.result!)
+                self.loader.hidesWhenStopped = true
+                self.loader.stopAnimating()
+                self.successLabel.isHidden = false
             }
             return nil
         })
@@ -214,24 +212,28 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
     
     
     @IBAction func save(sender:UIButton){
-    
+        self.successLabel.isHidden = true
+        self.loader.startAnimating()
+        self.uploadS3()
     }
 
     
     @IBAction func genderSelect(_ sender: AnyObject) {
         if self.gender.selectedSegmentIndex == 0{
-            self.userGender = "male"
+            self.userGender = "M"
         }
         else{
-            self.userGender = "female"
+            self.userGender = "F"
         }
     }
 
     
     @IBAction func pickerChange(){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = DateFormatter.Style.medium
-        dOB.text = dateFormatter.string(from: dobPick.date)
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        var strDate = dateFormatter.string(from: dobPick.date)
+        print(strDate)
+        dOB.text = strDate
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -239,9 +241,11 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         self.view.addGestureRecognizer(tap)
         if textField == self.dOB{
             dobPick = UIDatePicker()
-            dobPick.addTarget(self, action: (Selector(("pickerChange:"))), for: .valueChanged)
+            dobPick.datePickerMode = UIDatePickerMode.date
+            dobPick.backgroundColor = UIColor.white
+            dobPick.addTarget(self, action: (Selector(("pickerChange"))), for: .valueChanged)
             textField.inputView = self.dobPick
-            self.dobPick.isHidden = false
+            dobPick.isHidden = false
         }else if textField == self.familyLink{
             self.familyLinkPick.isHidden = false
         }
@@ -259,7 +263,6 @@ class RegistrationViewController: UIViewController, UIImagePickerControllerDeleg
         self.familyLinkName.resignFirstResponder()
         self.dobPick.isHidden = true
         self.familyLinkPick.isHidden = true
-    
         view.removeGestureRecognizer(tap)
     }
     
